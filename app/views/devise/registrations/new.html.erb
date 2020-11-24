@@ -1,0 +1,20 @@
+<section class="form-auth text-center">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {:class => 'form-signin'}) do |f| %>
+    <h1 class="h3 mb-3 font-weight-normal">Please Sign Up</h1>
+    <%= render "devise/shared/error_messages", resource: resource %>      
+      <%= f.text_field :first_name, autofocus: true, class: "form-control", placeholder: "First Name" %>      
+      <%= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: "Last Name" %>      
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id: "inputEmail", class: "form-control", placeholder: "Email address" %>    
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password" %>   
+
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: " confirm password" %>
+
+      <%= f.text_field :city_name, autofocus: true, class: "form-control", placeholder: "City Name" %>
+
+      <%= f.select :role, User.roles.keys, {include_blank: "Select User Type"}, { :class => 'form-control' } %>
+
+      <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block"%>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</section>

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Appointment date:</strong>
+  <%= @appointment.appointment_date %>
+</p>
+
+<p>
+  <strong>Patient Photos:</strong>
+  <% @appointment.photos.each do |photo| %>
+  	<%= image_tag photo.thumb.url, class: "mt-4" %>
+  <%end%>
+</p>
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back', appointments_path %>

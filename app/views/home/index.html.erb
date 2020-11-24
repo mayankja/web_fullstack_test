@@ -1,0 +1,38 @@
+<%if current_user.present? && current_user.role.eql?("Patient") %>
+	<%= link_to "Create An Appointment" ,appointments_path, class: "nav-link" %>
+<%elsif current_user.present? && current_user.role.eql?("Doctor") %>
+<h1>Appointments</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Patient First Name</th>
+      <th>Patient Last Name</th>
+      <th>Patient Email</th>
+      <th>City</th>
+      <th>Appointment date</th>
+      <th>Patient Photos</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+      	<% @patients.each do |patient| %>
+      	<%if appointment.patient_id == patient.id %>
+      		<td><%= patient.first_name %></td>
+      		<td><%= patient.last_name %></td>
+      		<td><%= patient.email %></td>
+      		<td><%= patient.city_name %></td>
+	        <td><%= appointment.appointment_date.strftime("%FT%T") %></td>
+	        <td>
+	          <% appointment.photos.each do |photo| %>    
+	          	<%= image_tag photo.thumb.url, class: "mt-4" %>    
+	          <%end%>
+	        </td>
+	      <%end%>
+	     <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%end%>
